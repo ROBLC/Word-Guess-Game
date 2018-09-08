@@ -22,7 +22,7 @@ var message = document.querySelector("#message")
 var gameWins = document.querySelector("#wins");
 var wins = 0;
 var cityPic = document.getElementById("cityImage");
-
+var againButton = document
 //Array with cities for computer to choose randomly
 var cities = [
     "SAINT JOHN'S", "NASSAU", "BRIDGETOWN", "BELMOPAN", "OTTAWA",
@@ -109,43 +109,43 @@ var nations = {
     },
     mexico : {  
         capital : "MEXICO CITY", 
-        capitalPic : "", 
-        description : ""
+        capitalPic : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Mexico_City-12.jpg", 
+        description : "Mexico City, or the City of Mexico and abbreviated as CDMX, is the capital of Mexico and the most populous city in North America. Mexico City is one of the most important cultural and financial centres in the Americas. It is located in the Valley of Mexico (Valle de México), a large valley in the high plateaus in the center of Mexico, at an altitude of 2,240 meters (7,350 ft). The city has 16 boroughs."
     },
     nicaragua : {  
         capital : "MANAGUA", 
-        capitalPic : "", 
-        description : ""
+        capitalPic : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Carretera_A_Masaya_Y_Downtown_Managua.jpg/640px-Carretera_A_Masaya_Y_Downtown_Managua.jpg", 
+        description : "Managua is the capital and largest city of Nicaragua, and the center of eponymous department. Located on the southwestern shore of Lake Managua, it had an estimated population 1,042,641 in 2016 within the city's administrative limits[4] and a population of 1,401,687 in the metropolitan area, which additionally includes the municipalities of Ciudad Sandino, El Crucero, Nindirí, Ticuantepe and Tipitapa."
     },
     panama : {  
         capital : "PANAMA CITY", 
-        capitalPic : "", 
-        description : ""
+        capitalPic : "https://upload.wikimedia.org/wikipedia/commons/7/71/Panama_City_Skyline_2017.jpg", 
+        description : "Panama City is the capital and largest city of Panama. It has an urban population of 880,691, with over 1.5 million in its metropolitan area. The city is located at the Pacific entrance of the Panama Canal, in the province of Panama. The city is the political and administrative center of the country, as well as a hub for banking and commerce."
     },
     saint_kitts : {  
         capital : "BASSETERRE", 
-        capitalPic : "", 
-        description : ""
+        capitalPic : "https://upload.wikimedia.org/wikipedia/commons/0/06/Basseterre.jpeg", 
+        description : "Basseterre, estimated population 13,000 in 2011, is the capital of Saint Kitts and Nevis. Geographically, the Basseterre port is located at 17°18′N 62°44′W, on the south western coast of Saint Kitts Island, and it is one of the chief commercial depots of the Leeward Islands. The city lies within Saint George Basseterre Parish. Basseterre is one of the oldest towns in the Eastern Caribbean.[2]"
     },
     saint_lucia : {  
         capital : "CASTRIES", 
-        capitalPic : "", 
-        description : ""
+        capitalPic : "https://upload.wikimedia.org/wikipedia/commons/e/ea/CastriesStLucia.JPG", 
+        description : "Castries is the capital and largest city of Saint Lucia, an island country in the Caribbean. The city has a population of 70,000 and stretches over an area of 80 km2 (31 sq mi). Castries is in a flood gut and is built on reclaimed land. It houses the seat of government and the head offices of many of foreign and local businesses. The city's design is in a grid pattern. Its sheltered harbour receives cargo vessels, ferry boats, and cruise ships."
     },
     saint_vincent : {  
         capital : "KINGSTOWN", 
-        capitalPic : "", 
-        description : ""
+        capitalPic : "https://upload.wikimedia.org/wikipedia/commons/a/a1/Kingstown.jpg", 
+        description : "Kingstown is the capital, chief port, and main commercial centre of Saint Vincent and the Grenadines. With a population of 16,500 (2010), Kingstown is the most populous settlement in the country. It is the centre for the island's agricultural industry and a port of entry for tourists. The city lies within the parish of Saint George in the south-west corner of Saint Vincent."
     },
     trinidad_tobago : {  
         capital : "PORT OF SPAIN", 
-        capitalPic : "", 
-        description : ""
+        capitalPic : "https://upload.wikimedia.org/wikipedia/commons/f/f6/Port_of_SpainT%26T_03_2012_0986.JPG", 
+        description : "Port of Spain is the capital city of Trinidad and Tobago and the country's third-largest city, after Chaguanas and San Fernando. The city has a municipal population of 37,074 (2011 census), a metropolitan population of 81,142 (2011 estimate) and a transient daily population of 250,000. It is located on the Gulf of Paria, on the northwest coast of the island of Trinidad and is part of a larger conurbation stretching from Chaguaramas in the west to Arima in the east with an estimated population of 600,000."
     },
     america : {  
         capital : "WASHINGTON", 
-        capitalPic : "", 
-        description : ""
+        capitalPic : "https://upload.wikimedia.org/wikipedia/commons/1/13/WashMonument_WhiteHouse.jpg", 
+        description : "Washington, D.C., formally the District of Columbia and commonly referred to as Washington or D.C., is the capital of the United States of America. Founded after the American Revolution as the seat of government of the newly independent country, Washington was named after George Washington, first President of the United States and Founding Father. Washington is the principal city of the Washington metropolitan area, which has a population of 6,131,977. As the seat of the United States federal government and several international organizations, the city is an important world political capital. Washington is one of the most visited cities in the world, with more than 20 million annual tourists."
     },
 }
 console.log(cityPic)
@@ -153,8 +153,8 @@ console.log(cityPic)
 document.onkeyup = function startGame () {
     var userGuesses = 15;
     //Computer choose a random word from array cities
-    //var randomCity = cities[Math.floor(Math.random() * cities.length)];
-    var randomCity = "NASSAU"
+    var randomCity = cities[Math.floor(Math.random() * cities.length)];
+   
     //Consolelog randomCity
     console.log(randomCity);
     //Hides intro 
@@ -227,11 +227,99 @@ document.onkeyup = function startGame () {
                     document.getElementById("cityText").innerHTML = nations.bahamas.description
                     console.log(nations.bahamas.description)
                 }
-              
-                document.onkeyup = function () {
-                    startGame();
-                    
+                else  if (randomCity === nations.barbados.capital) {
+                    cityPic.src = nations.barbados.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.barbados.description
+                    console.log(nations.bahamas.description)
                 }
+                else  if (randomCity === nations.belize.capital) {
+                    cityPic.src = nations.belize.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.belize.description
+                }
+                else  if (randomCity === nations.canada.capital) {
+                    cityPic.src = nations.canada.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.canada.description
+                }
+                else  if (randomCity === nations.costa_rica.capital) {
+                    cityPic.src = nations.costa_rica.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.costa_rica.description   
+                }
+                else  if (randomCity === nations.cuba.capital) {
+                    cityPic.src = nations.cuba.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.cuba.description  
+                }
+                else  if (randomCity === nations.dominica.capital) {
+                    cityPic.src = nations.dominica.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.dominica.description
+                }
+                else  if (randomCity === nations.dominican_republic.capital) {
+                    cityPic.src = nations.dominican_republic.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.dominican_republic.description  
+                }
+                else  if (randomCity === nations.salvador.capital) {
+                    cityPic.src = nations.salvador.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.salvador.description 
+                }
+                else  if (randomCity === nations.grenada.capital) {
+                    cityPic.src = nations.grenada.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.grenada.description
+                }
+                else  if (randomCity === nations.guatemala.capital) {
+                    cityPic.src = nations.guatemala.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.guatemala.description
+                }
+                else  if (randomCity === nations.haiti.capital) {
+                    cityPic.src = nations.haiti.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.haiti.description
+                }
+                else  if (randomCity === nations.honduras.capital) {
+                    cityPic.src = nations.honduras.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.honduras.description
+                }
+                else  if (randomCity === nations.jamaica.capital) {
+                    cityPic.src = nations.jamaica.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.jamaica.description
+                }
+                else  if (randomCity === nations.mexico.capital) {
+                    cityPic.src = nations.mexico.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.mexico.description
+                }
+                else  if (randomCity === nations.nicaragua.capital) {
+                    cityPic.src = nations.nicaragua.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.nicaragua.description
+                }
+                else  if (randomCity === nations.panama.capital) {
+                    cityPic.src = nations.panama.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.panama.description
+                }
+                else  if (randomCity === nations.saint_kitts.capital) {
+                    cityPic.src = nations.saint_kitts.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.saint_kitts.description
+                }
+                else  if (randomCity === nations.saint_lucia.capital) {
+                    cityPic.src = nations.saint_lucia.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.saint_lucia.description
+                }
+                else  if (randomCity === nations.saint_vincent.capital) {
+                    cityPic.src = nations.saint_vincent.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.saint_vincent.description
+                }
+                else  if (randomCity === nations.trinidad_tobago.capital) {
+                    cityPic.src = nations.trinidad_tobago.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.trinidad_tobago.description
+                }
+                else  if (randomCity === nations.america.capital) {
+                    cityPic.src = nations.america.capitalPic;
+                    document.getElementById("cityText").innerHTML = nations.america.description
+                }
+                $("#button").on("click", function() {
+                    startGame();
+                    cityPic.src = "https://via.placeholder.com/350x350"
+                    document.getElementById("cityText").innerHTML = ("")
+                    letters.textContent = "Letters guessed: "
+
+                  });
+               
 
             }
             letters.textContent = "Letters guessed: " + keysPressed.join("");
