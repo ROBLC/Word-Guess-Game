@@ -1,3 +1,4 @@
-#startGame {
-    color:blue;
+
+#cityImage {
+   object-fit: contain;
 }

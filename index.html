@@ -1,21 +1,82 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
-    
-    <title>Page Title</title>
+
+    <title>North America</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-    
+
 </head>
-<body >
 
-    <header>Awesome Game!</header>
+<body>
 
-    <div>
-        <h1 id="startGame"> Press any Key to Start the game</h1>
+    <header id="gameHeader">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Refresh City</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        More continents
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">South America</a>
+                        <a class="dropdown-item" href="#">Europe</a>
+                        <a class="dropdown-item" href="#">Africa</a>
+                        <a class="dropdown-item" href="#">Asia</a>
+                        <a class="dropdown-item" href="#">Australia</a>
+                    </div>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+            <div class="jumbotron ">
+                    <h1 id="message" class="display-4 text-center">Press any Key to Start the game</h1>
+                    <div class="row">
+                        <img id="cityImage" class="col-md-12"  src="https://via.placeholder.com/350x350" height="350px" width="350px">
+                        <hr class="my-4">
+                    </div>
+                    
+
+                    <div class="row">
+                        <p id="progress" class="lead col-md-12 text-center"></p>
+                    </div>
+                    
+                    <div class="row">
+                        <p id="guesses" class="lead col-md-6 text-center"></p>
+                        <p id="letters" class="lead col-md-6 text-center"></p>
+                        
+                    </div>
+                    <div class="row">
+                            <a class="btn btn-primary btn-lg align-center mx-auto" href="#" role="button">refresh city</a>
+                    </div>
+                    <div clas="row">
+                        <p id="wins" class="lead col-md-12 text-center"></p>
+                    </div>
+                  </div>
+       
+
+        <Section>
+            
+            <div id="guesses"> </div>
+            <div id="letters"> </div>
+
+        </Section>
+
+
 
 
 
@@ -26,5 +87,12 @@
 
     </div>
     <script src="assets/javascript/game.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

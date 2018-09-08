@@ -14,26 +14,42 @@
 
 var userGuesses = 15;
 var intro = document.getElementById("startGame");
-var numb = 0;
-
+var numb = 1;
+var progress = document.querySelector("#progress");
+var guesses = document.querySelector("#guesses");
+var letters = document.querySelector("#letters");
+var message = document.querySelector("#message")
+var gameWins = document.querySelector("#wins");
+var wins = 0;
+var cityPic = document.getElementById("cityImage").src;
 
 //Array with cities for computer to choose randomly
 var cities = [
-    "saint johns", "nassau", "bridgetown", "belmopan", "ottawa",
-    "san jose", "havana", "roseau", "santo domingo",
-    "saint georges", "guatemala city", "port au prince", "tegucigalpa",
-    "kingston", "mexico City", "managua", "panama city", "basseterre",
-    "castries", "kingstown", "port of spain", "washington"
+    "SAINT JOHN'S", "NASSAU", "BRIDGETOWN", "BELMOPAN", "OTTAWA",
+    "SAN JOSE", "HAVANA", "	ROSEAU", "SANTO DOMINGO", "SAN SALVADOR",
+    "SAINT GEORGE'S", "GUATEMALA CITY", "PORT AU PRINCE", "TEGUCIGALPA",
+    "KINGSTON", "MEXICO CITY", "MANAGUA", "PANAMA CITY", "BASSETERRE",
+    "CASTRIES", "KINGSTOWN", "PORT OF SPAIN", "WASHINGTON"
 ];
+var nations = {
+    antigua : {  
+        capital : "SAINT JOHN'S", 
+        capitalPic : "https://c1.staticflickr.com/4/3925/14683899888_d4d7b28284_b.jpg", 
+        Description : "St. John's is the capital and largest city of Antigua and Barbuda, located in the West Indies in the Caribbean Sea and with a population of 22,193, St. John's is the commercial centre of the nation and the chief port of the island of Antigua."
+    }
+}
+console.log(cityPic)
 //Start game at the press of any key from the user
-document.onkeyup = function () {
+document.onkeyup = function startGame () {
+    var userGuesses = 15;
     //Computer choose a random word from array cities
-    var randomCity = cities[Math.floor(Math.random() * cities.length)];
+    //var randomCity = cities[Math.floor(Math.random() * cities.length)];
+    var randomCity = "SAINT JOHN'S"
     //Consolelog randomCity
     console.log(randomCity);
     //Hides intro 
-    intro.style.display = "none";
-
+    cityPic = ("hi")
+    console.log(cityPic)
     //Empty array to store the characters of randomCity as "_" each one
     var cityHidden = [];
     //for loop that goes through the lenght of randomCity and create a "_" for each character storing them inside cityHidden
@@ -42,76 +58,91 @@ document.onkeyup = function () {
         if (randomCity[i] === " ") {
             cityHidden[i] = " ";
         }
+        if (randomCity[i] === "'") {
+            cityHidden[i] = "'";
+        }
     }
+    console.log(cityHidden.join(""));
     //Consoloe log randomCity as "_ _ _ _"
-    console.log(cityHidden.join(" "));
-    console.log(userGuesses);
+    progress.textContent = cityHidden.join("").toString();
+    console.log(cityHidden)
+    guesses.textContent = "Guesses: " + userGuesses;
     //When user presses a Key an event is registered
-
-    var keysPressed = [];
+    message.textContent = ("Press a new key!");
+    var keysPressed = [""];
     document.onkeyup = function (event) {
-        var userGuess = event.key.toLowerCase();
-        keysPressed[numb] = event.key.toLowerCase();
-        numb++;
-      
-        if (userGuess === keysPressed.filter(i === i === userGuess)) {
-            console.log("working");
-        }
-        
-        
-        
-        
-        for (var j = 0; j < keysPressed.length; j++) {
-            if (keysPressed[j] === userGuess) {
-                console.log("pick another letter");
-                userGuesses === userGuesses;
-                console.log(userGuesses);
-            }
-            else  {
-            userGuesses--;
-            }
-        }
+        var userGuess = event.key.toUpperCase();
         //if loop to check how many gueses remain
         if (userGuesses === 0) {
-            console.log(" You Lost!! Press any key to play again");
+            message.textContent = (" You Lost!! Press any key to play again");
+            progress.textContent =randomCity
             document.onkeyup = function () {
-                location.reload();
+                startGame();
             }
         }
+
+        var filteredKeys = keysPressed.filter(function (key) {
+            return key[0] === userGuess;
+        })
+        console.log(filteredKeys);
+        console.log(userGuess);
+        if (filteredKeys == userGuess) {
+            message.textContent = ("pick another letter")
+        }
         else if (userGuesses > 0) {
-            //Create variable for the key the user pressed
-            
+            keysPressed[numb] = event.key.toUpperCase();
+            numb++;
+            userGuesses--;
             console.log(userGuess);
-            //Consolelog userGuess
-            console.log(userGuesses);
-            console.log(keysPressed);
-            //Each guess subtracts one from userGuesses
-           
-            //Console log how many userGuesses are left
-            //for loop to go through the characters of randomCity 
+            guesses.textContent = "Guesses: " + userGuesses;
+            console.log(numb);
             for (var g = 0; g < (randomCity.length); g++) {
-                //if statement to chech if a character matches the key the user presses, update the cityHidden arrat to show the letter accordingly
                 if (randomCity[g] === userGuess) {
                     cityHidden[g] = userGuess;
+                    console.log(cityHidden[g]);
                 }
             }
-            //Console.log a string that contains the elements of cityHidden, keeping track of user progress
-            console.log(cityHidden.join(" "));
-            //if statement to check if randomCity is equal to the cityHidden joint string, if it is console.log win
+            
+            progress.textContent = cityHidden.join("").toString();
             if (randomCity === (cityHidden.join(""))) {
-                console.log("win , press any key to start again");
+                message.textContent = ("win , press any key to start again");
+                wins++;
+                if (randomCity === nations.antigua.capital ){
+                    function changePic (a) {
+                        cityPic = nations.antigua.capitalPic;
+                    console.log(cityPic);
+                    console.log("im working");
+                    }
+                    
+                }
+              
                 document.onkeyup = function () {
-                    location.reload();
+                    startGame();
+                    
                 }
 
             }
+            letters.textContent = "Letters guessed: " + keysPressed.join("");
+            gameWins.textContent = "Wins: " +wins;
         }
+
     }
 }
 
 
+var pic = function(x,y,z) {
+    
+}
 
+//var filteredKeys = keysPressed.filter(function(key){
+//    return key[0] === userGuess;
+//})
+//function filterKey (keysPressed, 0, letter) {
+//    var filteredKeys = keysPressed.filter(function(key) {
+//        return key[0] === letter;
+//    }
 
+//}
 
 
 
