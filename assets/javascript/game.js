@@ -319,7 +319,7 @@ document.onkeyup = function startGame () {
                 }
                 $("#button").on("click", function() {
                     startGame();
-                    cityPic.src = "https://cdn.pixabay.com/photo/2016/10/18/18/19/question-mark-1750942_960_720.png"
+                    cityPic.src = "https://upload.wikimedia.org/wikipedia/commons/c/c4/Ambox_blue_question.svg"
                     document.getElementById("cityText").innerHTML = ("")
                     letters.textContent = "Letters guessed: "
 
@@ -336,7 +336,7 @@ document.onkeyup = function startGame () {
                 document.getElementById("button").style.display= "initial";
                 $("#button").on("click", function() {
                     startGame();
-                    cityPic.src = "https://cdn.pixabay.com/photo/2016/10/18/18/19/question-mark-1750942_960_720.png"
+                    cityPic.src = "https://upload.wikimedia.org/wikipedia/commons/c/c4/Ambox_blue_question.svg"
                     document.getElementById("cityText").innerHTML = ("")
                     letters.textContent = "Letters guessed: "
     
