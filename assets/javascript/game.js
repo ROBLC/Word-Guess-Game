@@ -75,7 +75,7 @@ var nations = {
     dominican_republic : {  
         capital : "SANTO DOMINGO", 
         capitalPic : "https://upload.wikimedia.org/wikipedia/commons/3/38/Santo_Domingo_Panorama.jpg", 
-        description : "Santo Domingo officially Santo Domingo de Guzmán, is the capital and largest city in the Dominican Republic and the largest metropolitan area in the Caribbean by population. In 2010, its population was counted as 965,040, rising to 2,908,607 when its surrounding metropolitan area was included. The city is coterminous with the boundaries of the Distrito Nacional (<D.N.>, <National District>), itself bordered on three sides by Santo Domingo Province."   
+        description : "Santo Domingo officially Santo Domingo de Guzmán, is the capital and largest city in the Dominican Republic and the largest metropolitan area in the Caribbean by population. In 2010, its population was counted as 965,040, rising to 2,908,607 when its surrounding metropolitan area was included. The city is coterminous with the boundaries of the Distrito Nacional, itself bordered on three sides by Santo Domingo Province."   
     },
     salvador : {  
         capital : "SAN SALVADOR", 
@@ -148,19 +148,14 @@ var nations = {
         description : "Washington, D.C., formally the District of Columbia and commonly referred to as Washington or D.C., is the capital of the United States of America. Founded after the American Revolution as the seat of government of the newly independent country, Washington was named after George Washington, first President of the United States and Founding Father. Washington is the principal city of the Washington metropolitan area, which has a population of 6,131,977. As the seat of the United States federal government and several international organizations, the city is an important world political capital. Washington is one of the most visited cities in the world, with more than 20 million annual tourists."
     },
 }
-console.log(cityPic)
+
 //Start game at the press of any key from the user
 document.onkeyup = function startGame () {
+    document.getElementById("button").style.display= "none";
     var userGuesses = 15;
     //Computer choose a random word from array cities
     var randomCity = cities[Math.floor(Math.random() * cities.length)];
-   
-    //Consolelog randomCity
     console.log(randomCity);
-    //Hides intro 
-    
-    console.log(cityPic)
-    //Empty array to store the characters of randomCity as "_" each one
     var cityHidden = [];
     //for loop that goes through the lenght of randomCity and create a "_" for each character storing them inside cityHidden
     for (var i = 0; i < (randomCity.length); i++) {
@@ -172,149 +167,159 @@ document.onkeyup = function startGame () {
             cityHidden[i] = "'";
         }
     }
-    console.log(cityHidden.join(""));
-    //Consoloe log randomCity as "_ _ _ _"
     progress.textContent = cityHidden.join("").toString();
-    console.log(cityHidden)
-    guesses.textContent = "Guesses: " + userGuesses;
+    guesses.textContent = "Guesses left: " + userGuesses;
     //When user presses a Key an event is registered
-    message.textContent = ("Press a new key!");
+    message.textContent = ("Press a key!");
     var keysPressed = [""];
     document.onkeyup = function (event) {
         var userGuess = event.key.toUpperCase();
-        //if loop to check how many gueses remain
-        if (userGuesses === 0) {
-            message.textContent = (" You Lost!! Press any key to play again");
-            progress.textContent =randomCity
-            document.onkeyup = function () {
-                startGame();
-            }
-        }
-
         var filteredKeys = keysPressed.filter(function (key) {
             return key[0] === userGuess;
         })
-        console.log(filteredKeys);
-        console.log(userGuess);
-        if (filteredKeys == userGuess) {
+        // else if statement to check key pressed vs keys already pressed
+        if (filteredKeys == userGuess || userGuess === NaN) {
             message.textContent = ("pick another letter")
         }
-        else if (userGuesses > 0) {
+        // else if statement that checks how many userGuess ther are, and runs main game components
+        else if (userGuesses >= 1) {
             keysPressed[numb] = event.key.toUpperCase();
             numb++;
             userGuesses--;
-            console.log(userGuess);
-            guesses.textContent = "Guesses: " + userGuesses;
-            console.log(numb);
+            guesses.textContent = "Guesses left: " + userGuesses;
+            //for loops that runs through length of the randomCity and updates cityHidden array with a positive hit from a correspondant key
             for (var g = 0; g < (randomCity.length); g++) {
                 if (randomCity[g] === userGuess) {
                     cityHidden[g] = userGuess;
-                    console.log(cityHidden[g]);
                 }
             }
-            
             progress.textContent = cityHidden.join("").toString();
+            //if statement that checks victory condtions
             if (randomCity === (cityHidden.join(""))) {
-                message.textContent = ("win , press any key to start again");
+                message.textContent = ("You won!!!");
                 wins++;
+                document.getElementById("button").style.display= "initial";
+                document.onkeyup = function () {
+                    message.textContent = "Press Play again!"
+                }
                 if (randomCity === nations.antigua.capital) {
                     cityPic.src = nations.antigua.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.antigua.description
-                    console.log(nations.antigua.description)
+                    document.getElementById("cityText").innerHTML = nations.antigua.description;
+                    progress.textContent = nations.antigua.capital + ", THE CAPITAL OF ANTIGUA AND BARBUDA";
                 }
                 else  if (randomCity === nations.bahamas.capital) {
                     cityPic.src = nations.bahamas.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.bahamas.description
-                    console.log(nations.bahamas.description)
+                    document.getElementById("cityText").innerHTML = nations.bahamas.description;
+                    progress.textContent = nations.bahamas.capital + ", THE CAPITAL OF THE BAHAMAS";
                 }
                 else  if (randomCity === nations.barbados.capital) {
                     cityPic.src = nations.barbados.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.barbados.description
-                    console.log(nations.bahamas.description)
+                    document.getElementById("cityText").innerHTML = nations.barbados.description;
+                    progress.textContent = nations.barbados.capital + ", THE CAPITAL OF BARBADOS";
                 }
                 else  if (randomCity === nations.belize.capital) {
                     cityPic.src = nations.belize.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.belize.description
+                    document.getElementById("cityText").innerHTML = nations.belize.description;
+                    progress.textContent = nations.belize.capital + ", THE CAPITAL OF BELIZE";
                 }
                 else  if (randomCity === nations.canada.capital) {
                     cityPic.src = nations.canada.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.canada.description
+                    document.getElementById("cityText").innerHTML = nations.canada.description;
+                    progress.textContent = nations.canada.capital + ", THE CAPITAL OF CANADA";
                 }
                 else  if (randomCity === nations.costa_rica.capital) {
                     cityPic.src = nations.costa_rica.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.costa_rica.description   
+                    document.getElementById("cityText").innerHTML = nations.costa_rica.description;
+                    progress.textContent = nations.costa_rica.capital + ", THE CAPITAL OF COSTA RICA";   
                 }
                 else  if (randomCity === nations.cuba.capital) {
                     cityPic.src = nations.cuba.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.cuba.description  
+                    document.getElementById("cityText").innerHTML = nations.cuba.description;
+                    progress.textContent = nations.cuba.capital + ", THE CAPITAL OF CUBA";  
                 }
                 else  if (randomCity === nations.dominica.capital) {
                     cityPic.src = nations.dominica.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.dominica.description
+                    document.getElementById("cityText").innerHTML = nations.dominica.description;
+                    progress.textContent = nations.dominica.capital + ", THE CAPITAL OF DOMINICA";
                 }
                 else  if (randomCity === nations.dominican_republic.capital) {
                     cityPic.src = nations.dominican_republic.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.dominican_republic.description  
+                    document.getElementById("cityText").innerHTML = nations.dominican_republic.description;
+                    progress.textContent = nations.dominican_republic.capital + ", THE CAPITAL OF THE DOMINICAN REPUBLIC"; 
                 }
                 else  if (randomCity === nations.salvador.capital) {
                     cityPic.src = nations.salvador.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.salvador.description 
+                    document.getElementById("cityText").innerHTML = nations.salvador.description;
+                    progress.textContent =  nations.salvador.capital + ", THE CAPITAL OF EL SALVADOR"; 
                 }
                 else  if (randomCity === nations.grenada.capital) {
                     cityPic.src = nations.grenada.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.grenada.description
+                    document.getElementById("cityText").innerHTML = nations.grenada.description;
+                    progress.textContent = nations.grenada.capital + ", THE CAPITAL OF GRENADA";
                 }
                 else  if (randomCity === nations.guatemala.capital) {
                     cityPic.src = nations.guatemala.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.guatemala.description
+                    document.getElementById("cityText").innerHTML = nations.guatemala.description;
+                    progress.textContent = nations.guatemala.capital + ", THE CAPITAL OF GUATEMALA";
                 }
                 else  if (randomCity === nations.haiti.capital) {
                     cityPic.src = nations.haiti.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.haiti.description
+                    document.getElementById("cityText").innerHTML = nations.haiti.description;
+                    progress.textContent = nations.haiti.capital + ", THE CAPITAL OF HAITI";
                 }
                 else  if (randomCity === nations.honduras.capital) {
                     cityPic.src = nations.honduras.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.honduras.description
+                    document.getElementById("cityText").innerHTML = nations.honduras.description;
+                    progress.textContent = nations.honduras.capital + ", THE CAPITAL OF HONDURAS";
                 }
                 else  if (randomCity === nations.jamaica.capital) {
                     cityPic.src = nations.jamaica.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.jamaica.description
+                    document.getElementById("cityText").innerHTML = nations.jamaica.description;
+                    progress.textContent = nations.jamaica.capital + ", THE CAPITAL OF JAMAICA";
                 }
                 else  if (randomCity === nations.mexico.capital) {
                     cityPic.src = nations.mexico.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.mexico.description
+                    document.getElementById("cityText").innerHTML = nations.mexico.description;
+                    progress.textContent = nations.mexico.capital + ", THE CAPITAL OF MEXICO";
                 }
                 else  if (randomCity === nations.nicaragua.capital) {
                     cityPic.src = nations.nicaragua.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.nicaragua.description
+                    document.getElementById("cityText").innerHTML = nations.nicaragua.description;
+                    progress.textContent = nations.nicaragua.capital + ", THE CAPITAL OF NICARAGUA";
                 }
                 else  if (randomCity === nations.panama.capital) {
                     cityPic.src = nations.panama.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.panama.description
+                    document.getElementById("cityText").innerHTML = nations.panama.description;
+                    progress.textContent = nations.panama.capital + ", THE CAPITAL OF PANAMA";
                 }
                 else  if (randomCity === nations.saint_kitts.capital) {
                     cityPic.src = nations.saint_kitts.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.saint_kitts.description
+                    document.getElementById("cityText").innerHTML = nations.saint_kitts.description;
+                    progress.textContent = nations.saint_kitts.capital + ", THE CAPITAL OF SAINT KITTS AND NEVIS";
                 }
                 else  if (randomCity === nations.saint_lucia.capital) {
                     cityPic.src = nations.saint_lucia.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.saint_lucia.description
+                    document.getElementById("cityText").innerHTML = nations.saint_lucia.description;
+                    progress.textContent = nations.saint_lucia.capital + ", THE CAPITAL OF SAINT LUCIA";
                 }
                 else  if (randomCity === nations.saint_vincent.capital) {
                     cityPic.src = nations.saint_vincent.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.saint_vincent.description
+                    document.getElementById("cityText").innerHTML = nations.saint_vincent.description;
+                    progress.textContent = nations.saint_vincent.capital + ", THE CAPITAL OF SAINT VINCENT AND THE GRENADINES";
                 }
                 else  if (randomCity === nations.trinidad_tobago.capital) {
                     cityPic.src = nations.trinidad_tobago.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.trinidad_tobago.description
+                    document.getElementById("cityText").innerHTML = nations.trinidad_tobago.description;
+                    progress.textContent = nations.trinidad_tobago.capital + ", THE CAPITAL OF TRINIDAD AND TOBAGO";
                 }
                 else  if (randomCity === nations.america.capital) {
                     cityPic.src = nations.america.capitalPic;
-                    document.getElementById("cityText").innerHTML = nations.america.description
+                    document.getElementById("cityText").innerHTML = nations.america.description;
+                    progress.textContent = nations.america.capital + ", THE CAPITAL OF THE UNITED STATES OF AMERICA";
                 }
                 $("#button").on("click", function() {
                     startGame();
-                    cityPic.src = "https://via.placeholder.com/350x350"
+                    cityPic.src = "https://cdn.pixabay.com/photo/2016/10/18/18/19/question-mark-1750942_960_720.png"
                     document.getElementById("cityText").innerHTML = ("")
                     letters.textContent = "Letters guessed: "
 
@@ -324,6 +329,20 @@ document.onkeyup = function startGame () {
             }
             letters.textContent = "Letters guessed: " + keysPressed.join("");
             gameWins.textContent = "Wins: " +wins;
+            //if statement that checks lossing conditions
+            if (userGuesses < 1) {
+                message.textContent = (" You Lost!! Press Play again!!");
+                progress.textContent =randomCity;
+                document.getElementById("button").style.display= "initial";
+                $("#button").on("click", function() {
+                    startGame();
+                    cityPic.src = "https://cdn.pixabay.com/photo/2016/10/18/18/19/question-mark-1750942_960_720.png"
+                    document.getElementById("cityText").innerHTML = ("")
+                    letters.textContent = "Letters guessed: "
+    
+                  });
+            }
+            
         }
 
     }

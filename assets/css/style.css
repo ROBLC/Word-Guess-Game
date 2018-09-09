@@ -1,4 +1,32 @@
-
+body {
+    object-fit: contain;
+    background-image: url("https://w-dog.net/wallpapers/3/27/428722509777982.jpg")
+}
+#gameHeader {
+    background-color: #ffffff;
+}
 #cityImage {
    object-fit: contain;
+   margin-top:20px;
+   height:350px;
+   width: 350px;
+}
+#button {
+    display: none;
+}
+
+.jumbotron {
+    margin-top:40px;
+    margin-bottom: 40px;
+    background-color: #ffffff;
+}
+#progress {
+    letter-spacing: 4px;
+}
+#navbarDropdown {
+    font-size:24px;
+    color: #0c3a6f;
+}
+#cityText {
+    margin-top: 20px;
 }
